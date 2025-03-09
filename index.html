@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Student Registration Portal - Easily register, edit, and manage student records with a user-friendly interface and real-time updates." />
+    <meta
+      name="keywords"
+      content="Student Registration, Student Management, Education, Enrollment System, Student Records" />
+    <meta name="author" content="Sravan Gunaganti" />
+    <link
+      rel="shortcut icon"
+      href="https://cdn0.iconfinder.com/data/icons/kameleon-free-pack-rounded/110/Student-3-1024.png"
+      type="image/x-icon" />
+    <title>Student Registration Portal</title>
+
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"></script>
+  </head>
+  <body>
+    <!-- header section  -->
+    <header>
+      <h1>Student Registration Portal</h1>
+      <div>
+        <p>
+          Welcome to the Student Registration Portal! This platform allows you
+          to efficiently register and manage student records with ease. Start by
+          entering a student's details in the form, including their name,
+          student ID, email, and contact number. Once submitted, the student
+          will be added to the record list below.
+        </p>
+
+        <p>
+          <strong>Edit Functionality:</strong> To update any details, click the
+          <strong>edit icon with pen</strong> button next to the student's
+          record. Modify the necessary information in the form and save the
+          changes.
+        </p>
+
+        <p>
+          <strong>Delete Functionality:</strong> If a record is no longer
+          needed, click the <strong>trash icon</strong> button to remove it from
+          the list permanently.
+        </p>
+
+        <p>
+          The system stores all data in your browser, ensuring that records
+          remain saved even after refreshing the page.
+        </p>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <!-- Student Form with input fields -->
+        <section class="form-container">
+          <form id="student-form">
+            <h2>Student Form</h2>
+
+            <label for="name">Student Name:</label>
+            <input
+              type="text"
+              id="name"
+              required
+              placeholder="Enter Student name" maxlength="25"/>
+
+            <label for="student-id">Student ID:</label>
+            <input
+              type="number"
+              id="student-id"
+              required
+              placeholder="Enter Student ID" maxlength="10" pattern="\d{10}"/>
+
+            <label for="email">Email ID:</label>
+            <input
+              type="email"
+              id="email"
+              required
+              placeholder="student@gmail.com" />
+
+            <label for="contact">Contact No:</label>
+            <input
+              type="number"
+              id="contact"
+              required
+              placeholder="Enter Contact Number" maxlength="10"/>
+
+            <div class="form-btn-container">
+              <button type="submit" class="submit-btn">Add Student</button>
+              <button type="button" class="cancel">Cancel</button>
+            </div>
+          </form>
+        </section>
+        <!-- Student Records Section -->
+        <section class="student-list-container">
+          <h2>Student Records</h2>
+          <div class="student-list">
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Student ID</th>
+                  <th>Email</th>
+                  <th>Contact</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="student-table-body">
+                <!-- Dynamically rows will be added here -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <!-- Confirmation Modal -->
+    <div id="confirm-modal" class="modal">
+      <p id="confirm-text">Are you sure?</p>
+      <button id="confirm-yes">Yes</button>
+      <button id="confirm-no">No</button>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
