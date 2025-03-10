@@ -1,7 +1,11 @@
 /* General Styles */
 @import url("https://fonts.googleapis.com/css2?family=Afacad+Flux:wght@100..1000&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
-
+html{
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    scroll-padding: 16px;
+}
 *{
     margin:0;
     padding:0;
@@ -79,11 +83,14 @@ form{
 h2{
     background-color: #caf4d3;
     text-align: center;
+    width:100%;
 
 }
 .form-container h2{
     padding:16px;
 }
+
+
 
 
 
@@ -165,12 +172,12 @@ input {
  }
 .student-list {
     width: 100%;
-
-    max-height:379px;
+    max-height:443px;
     border-radius: 0px 0px 8px 8px;
     scrollbar-width: thin;
     scrollbar-color:rgb(210, 210, 210) white;
     animation: extend 1s linear;
+    /* display: none; */
 }
 
 @keyframes extend {
@@ -191,14 +198,17 @@ input {
 
 .student-list th, .student-list td {
     padding: 12px 5px 12px 5px;
+    white-space: nowrap;
     text-align: center;
-    overflow-wrap: break-word;
-    max-width: 25ch;
+    max-width: 250px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    scrollbar-color:rgb(210, 210, 210) transparent;
     /* font-size: 14px; */
 }
 
 .student-list th {
-    background-color: white;;
+    background-color: white;
     color: black;
     text-align: center;
     position:sticky;
@@ -207,8 +217,14 @@ input {
 }
 
 .student-list tr:nth-child(even) {
-    background-color: #f9f9f9;
+    background-color: #ffffff;
 }
+.student-list tr:nth-child(odd) {
+    background-color: #e9e6e6;
+}
+/* .student-list tr> td:nth-child(even) {
+    background-color: #e5e1e1;
+} */
 
 .student-list > tbody button {
     padding: 5px 10px;
@@ -244,35 +260,41 @@ input {
     display:none;
 }
 
-.modal {
-    display: none;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background:#02473e;
-    color:white;
-
-    box-shadow: 0px 0px 20px 0px black;
+.hide-element{
+    display:none;
+}
+.empty-view{
     width:100%;
-    max-width: 400px;
-    padding:32px;
-    border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    height:100%;
+    display:flex;
+    flex-direction: column;
+    /* gap:16px; */
+    gap:0;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: #caf4d3;
+    padding:16px;
+}
+.svg-class{
+    margin:0 auto;
+}
+.empty-content{
     text-align: center;
 }
 
-.modal button {
-    margin:24px 16px 16px 24px;
-    /* margin: 5px; */
-    padding: 5px 10px;
-    border: none;
-    cursor: pointer;
+.empty-view{
+    width:100%;
+    height:100%;
+    flex-direction: column;
+    /* gap:16px; */
+    gap:0;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    background-color: #caf4d3;
+    padding:16px;
 }
-
-#confirm-yes { background: #e74c3c; color: white; }
-#confirm-no { background: rgb(255, 252, 252); color: black; }
-
 
 /* Responsive */
 
