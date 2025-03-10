@@ -8,16 +8,23 @@ document.addEventListener("DOMContentLoaded", () => {
   const studentTableBody = document.getElementById("student-table-body");
   const submitBtn = document.querySelector(".submit-btn");
   const cancelBtn = document.querySelector(".cancel");
+  const emptyView = document.querySelector(".empty-view");
+  const studentListContainer = document.querySelector(".student-list-container")
+  const studentListHeading = document.querySelector(".student-list-heading")
+  // studentListContainer.classList.add(".hide-element");
+
 
   studentList.style.overflowY = "auto";
 
   // Getting stored student data from localStorage or initialize an empty array
   let students = JSON.parse(localStorage.getItem("students")) || [];
+  // students.push(students[0]);
+  // saveToLocalStorage();
   let editIndex = null;
   // console.log(0 === null);
-  function renderStart(index) {
+  function renderStart(index=null) {
     editIndex=index;
-    if (index!==undefined & index!==null) {
+    if (index!==null) {
       cancelBtn.style.display = "block";
       submitBtn.textContent = "Save Changes";
     } else {
@@ -40,7 +47,19 @@ document.addEventListener("DOMContentLoaded", () => {
   cancelBtn.addEventListener("click", handleCancelChanges);
 
   // Function to render the student data in the table
-  function renderTable() {
+  function renderTable(scroll=false) { 
+    console.log(students,students.length);
+    if(students.length>0){
+      
+      emptyView.style.display = "none";
+      studentList.style.display = "block";
+      studentListHeading.style.display = "block";  
+    }else{
+      emptyView.style.display = "flex";
+      studentList.style.display = "none";
+      studentListHeading.style.display = "none";  
+      return;
+    }
     studentTableBody.innerHTML = "";
     students?.forEach((student, index) => {
       const row = document.createElement("tr");
@@ -63,7 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       actionContainer.style.display = "flex";
       actionContainer.style.gap = "16px";
-      actionContainer.style.justifyContent = "space-evenly";
+      actionContainer.style.justifyContent = "space-between";
       actionContainer.style.alignItems="center"
 
       if (editIndex === index) {
@@ -87,7 +106,11 @@ document.addEventListener("DOMContentLoaded", () => {
       row.appendChild(actionContainer);
 
       studentTableBody.appendChild(row);
-      // submitBtn.textContent = "Add Student";
+      if(editIndex===index){
+          row.scrollIntoView();
+      }else if(scroll && index===students.length-1){
+        row.scrollIntoView();
+      }
     });
   }
   // Function to add a new student
@@ -122,7 +145,17 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Enter a valid email.");
       return;
     }
-    if (editIndex !== null & editIndex!==undefined) {
+    const isFound = students.find(student=> student.id===id);
+
+    if (isFound) {
+      if (editIndex===null) {
+        alert("Student Id already exists");
+        return;
+    }
+
+    }
+
+    if (editIndex !== null) {
       students.splice(editIndex, 1, { name, id, email, contact });
     } else {
       students.push({ name, id, email, contact });
@@ -131,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     studentForm.reset();
     renderStart(null)
-    renderTable();
+    renderTable(true);
   }
 
   // Function to edit a student record
@@ -145,33 +178,13 @@ document.addEventListener("DOMContentLoaded", () => {
     // submitBtn.textContent = "Save Changes";
     renderStart(index);
     renderTable();
+    studentForm.scrollIntoView()
     
-    
-    
-  }
-
-  // confirm modal handle function
-  function showConfirm(message, callback) {
-    const modal = document.getElementById("confirm-modal");
-    document.getElementById("confirm-text").textContent = message;
-
-    modal.style.display = "block";
-
-    document.getElementById("confirm-yes").onclick = () => {
-      modal.style.display = "none";
-      callback(true);
-    };
-
-    document.getElementById("confirm-no").onclick = () => {
-      modal.style.display = "none";
-      callback(false);
-    };
   }
 
   // Function to delete a student record
   function deleteStudent(index) {
-    showConfirm("Are you sure want to delete this Student?", function (result) {
-      if (result) {
+      if (confirm("Are you sure want to delete this student?")) {
         students.splice(index, 1);
         saveToLocalStorage();
 
@@ -181,9 +194,6 @@ document.addEventListener("DOMContentLoaded", () => {
       } else {
         console.log("Cancelled!");
       }
-    });
-
-    // }
   }
 
   // Handle form submission with event listener
