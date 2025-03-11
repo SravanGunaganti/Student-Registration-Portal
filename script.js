@@ -11,8 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const emptyView = document.querySelector(".empty-view");
   const studentListHeading = document.querySelector(".student-list-heading");
 
-  // scrollbar enable
-  studentList.style.overflow = "auto";
+  // scrollbar enabled dynamically using overflow
+  studentList.style.overflow= "auto";
   let students = JSON.parse(localStorage.getItem("students")) || [];
   let editIndex = null;
   function renderStart(index = null) {
@@ -60,8 +60,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 <td>${student.name}</td>
                 <td>${student.id}</td>
                 <td>${student.email}</td>
-                <td>${student.contact}</td>
-                
+                <td>${student.contact}</td>   
             `;
 
       const actionContainer = document.createElement("td");
@@ -104,7 +103,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to add a new student
   function addStudent(event) {
     event.preventDefault();
-
     const name = nameElement.value.trim();
     const id = idElement.value.trim();
     const email = emailElement.value.trim();
@@ -148,7 +146,6 @@ document.addEventListener("DOMContentLoaded", () => {
       students.push({ name, id, email, contact });
     }
     saveToLocalStorage();
-
     studentForm.reset();
     renderStart(null);
     renderTable(true);
@@ -157,7 +154,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Function to edit a student record
   function editStudent(index) {
     const student = students[index];
-
     nameElement.value = student.name;
     idElement.value = student.id;
     emailElement.value = student.email;
@@ -172,7 +168,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (confirm("Are you sure want to delete this student?")) {
       students.splice(index, 1);
       saveToLocalStorage();
-
       studentForm.reset();
       renderStart();
       renderTable();
