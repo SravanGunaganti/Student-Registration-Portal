@@ -1,67 +1,86 @@
-# **Student Registration Portal \- Documentation**
+# **Student Registration Portal- Project Documentation**
 
-## **1\. Overview**
+## **1\. Objective**
 
-The **Student Registration Portal** is a web-based application designed to manage student records efficiently. It allows users to **add, edit, and delete student details**, ensuring data persistence using **local storage**.
+The **Student Registration Portal** is a web-based application designed to allow users to **register student details**, including **name, student ID, email, and contact number**. The system also provides functionalities for **editing and deleting records** while ensuring data persistence using **local storage**.
 
-## **2\. Features**
+## **2\. Functionalities Implemented**
 
-* **Add Students** – Enter student details dynamically.  
-* **Edit Students** – Modify existing student information.  
-* **Delete Students** – Remove student records from the list.  
-* **Data Persistence** – Stores records in **local storage**, even after refreshing.  
-* **Form Validation** – Ensures correct input formats.  
-* **Dynamic Scrollbar** – Appears when records exceed a set limit.  
-* **Responsive Design** – Works on all devices.
+* Users can **add new student records** through a structured form.  
+* Existing student records can be **edited** with updated details.  
+* Students can be **deleted** from the list with a confirmation prompt.  
+* Data remains **persistent using local storage**, ensuring records do not disappear after refreshing the page.  
+* **Form validation** ensures:  
+  * Student ID and contact number accept only numbers.  
+  * Student name accepts only letters and spaces.  
+  * Email must follow a valid format.  
+* Users cannot submit the form with **empty fields**.  
+* A **vertical scrollbar** is dynamically added when student records exceed the visible specified size.
 
-## **3\. Technologies Used**
+## **3\. File Structure & Semantic Breakdown**
 
-* **HTML** – Structure of the application.  
-* **CSS** – Styling for user interface.  
-* **JavaScript** – Handles form submission, validation, and local storage.
-
-## **4\. File Structure**
+### **File Structure**
 
 * `index.html` – Main HTML file  
 * `styles.css` – Styles for UI  
 * `script.js` – JavaScript logic  
-* `README.md` – Project documentation
+* `README.md` – Project documentation  
+* `Student-Registration-Portal.pdf`– Project documentation
 
-## **5\. Hosted Link & Repository**
+### **HTML \- (`index.html`)**
 
-* **Live Demo:** [https://student-reg-portal.netlify.app/](https://student-reg-portal.netlify.app/)
+* Used **semantic HTML elements** such as `header`, `section`, `table`, and `form` for accessibility.  
+* Contains a structured **student registration form**.  
+* Displayed student records in a **dynamic table format**.  
+* Used **meta tags** for SEO optimization and improved accessibility.
+
+### **CSS \- (`style.css`)**
+
+* Implemented a **responsive design** ensuring usability across **both mobile & desktop** devices.  
+* Used **CSS Grid & Flexbox** for structured alignment and layout management.  
+* **Scrolling enabled** for student records and table fields when exceeds size.  
+* **Sticky table headers** enhance visibility when scrolling.  
+* Ensures **consistent styling** with a light blue color palette and a clean layout.
+
+### **JavaScript \- (`script.js`)**
+
+* Implements **DOM manipulation** to dynamically update the student list.  
+* Handled **form validation** to prevent incorrect or incomplete submissions.  
+* Stored and retrieved data using **local storage** for persistence.  
+* Prevented **duplicate Student IDs** by checking before adding a new record.  
+* Options for **Adding, Update, Delete.**  
+* Ensures **students cannot be added with empty fields**.
+
+## **4\. Design Choices**
+
+* Designed with a **minimalist user interface** for simplicity and ease of use.  
+* Utilized a **consistent color scheme and structured form layout**.  
+* Provided **real-time feedback** through alerts for validation errors.  
+* Adapts to **different screen sizes** for accessibility on various devices.  
+* **Scrolling functionality** ensures ease of navigation for large datasets.  
+* **Sticky headers** maintain visibility of column titles when scrolling.
+
+## **5\. Challenges Faced & Solutions**
+
+### **Preventing Duplicate Student IDs**
+
+* Implemented a validation check to ensure unique student IDs.
+
+### **Handling Form Reset After Editing**
+
+* Used an `editIndex` variable to track and manage edit operations and ui conditionally.
+
+### **Maintaining Data After Page Refresh**
+
+* Integrated **local storage** to retain student records persistently.
+
+### **Fixing UI Layout Issues on Mobile**
+
+* Applied **responsive media queries** to ensure the interface adapts effectively   
+* Enables horizontal and vertical scrolling for large data.
+
+## **6\. Live Demo & GitHub Repository**
+
+* **Live Demo:** [https://student-reg-portal.netlify.app/](https://student-reg-portal.netlify.app/)  
 * **GitHub Repository:** [https://github.com/SravanGunaganti/Student-Registration-Portal.git](https://github.com/SravanGunaganti/Student-Registration-Portal.git)
-
-## 
-
-## **6\. Setup and Installation**
-
-### **How to Run the Project Locally**
-
-1. **Download the project**  
-   * Clone the repository or download the ZIP and extract it.  
-2. **Open `index.html`** in a browser.
-
-## **6\. How the Project Works**
-
-### **Adding a Student**
-
-* The user fills out the form and submits it.  
-* The student appears in the table below.  
-* The data is stored in local storage.
-
-### **Editing a Student**
-
-* Clicking the "Edit(note-pad-icon)" button fills the form with existing student details.  
-* The user modifies and saves changes.  
-* Cancel button resets the form and cancel the changes  & exit from editing.
-
-### **Deleting a Student**
-
-* Clicking the "Delete(trash icon)" button opens a confirmation modal.  
-* If confirmed, the record is removed permanently.
-
-## **7\. Conclusion**
-
-The **Student Registration Portal** is an efficient way to manage student records with **real-time updates and data persistence**. It is a beginner-friendly project for learning **JavaScript, DOM manipulation, and local storage**.
 
