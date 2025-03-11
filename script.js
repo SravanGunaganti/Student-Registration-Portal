@@ -149,11 +149,6 @@ document.addEventListener("DOMContentLoaded", () => {
     saveToLocalStorage();
 
     studentForm.reset();
-    if (editIndex !== null) {
-      alert("Student Updated Succesfully");
-    } else {
-      alert("Student Added Sucessfully");
-    }
     renderStart(null);
     renderTable(true);
   }
