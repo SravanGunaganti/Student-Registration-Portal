@@ -11,7 +11,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const emptyView = document.querySelector(".empty-view");
   const studentListHeading = document.querySelector(".student-list-heading");
 
-  studentList.style.overflowY = "auto";
+  // scrollbar enable
+  studentList.style.overflow = "auto";
   let students = JSON.parse(localStorage.getItem("students")) || [];
   let editIndex = null;
   function renderStart(index = null) {
