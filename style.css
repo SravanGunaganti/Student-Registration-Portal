@@ -277,17 +277,6 @@ input {
   background-color: #caebf4;
   padding: 12px;
 }
-.indicator-track {
-  width: 100%;
-  height: 4px;
-  background: #ccc;
-}
-
-.indicator-bar {
-  height: 4px;
-  background: coral;
-  transition: width 0.3s ease;
-}
 /* Responsive */
 
 @media screen and (min-width: 1200px) {
@@ -298,43 +287,7 @@ input {
     max-width: 100%;
   }
 }
-/* @media screen and (max-width:768px) {
-    .student-list-container h2{
-        border-radius: 8px;
-        margin-bottom: 12px;
-    }
-    thead{
-        display:none;
-    }
-    tr{
-        display:flex;
-        flex-direction: column;
-        align-items: flex-start;
-        gap:8px;
-        border-radius: 10px;
-        padding:12px;
-        max-width: 100%;
-        background-color: #caebf4 !important;
-    }
-    tbody{
-        display: flex;
-        flex-direction: column;
-        gap:12px;
-    }
-    .student-list table {
-        background: none;
-        
-    }
-    td{
-        padding:0 !important;
-        max-width: 100%;
-        overflow-x: auto;
-    }
-    td strong{
-        display:inline;
-    }
-    
-} */
+
 @media (max-width: 600px) {
   .action-container {
     gap: 12px;
@@ -342,11 +295,8 @@ input {
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
-  direction: rtl;
-  position: absolute;
-  top: 0;
+  width: 5px;
+  height: 5px;
 }
 
 ::-webkit-scrollbar-track {
@@ -355,5 +305,9 @@ input {
 
 ::-webkit-scrollbar-thumb {
   background-color: rgb(19, 91, 117);
-  border-radius: 6px;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-corner{
+    background-color: #caebf4;
 }
