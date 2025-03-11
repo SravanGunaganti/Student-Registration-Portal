@@ -26,21 +26,22 @@
       <div>
         <p>
           Welcome to the Student Registration Portal! This platform allows you
-          to efficiently register and manage student records with ease. Start by
-          entering a student's details in the form, including their name,
-          student ID, email, and contact number. Once submitted, the student
-          will be added to the record list below.
+          to efficiently register and manage student records with ease.
         </p>
 
+        <p><strong>AddStudent:</strong> To Add student enter student details in the form, including their name,
+        student ID, email, and contact number. Once submitted, the student
+        will be added to the record list below.</p>
+
         <p>
-          <strong>Edit Functionality:</strong> To update any details, click the
+          <strong>Edit Student:</strong> To update any details, click the
           <strong>edit icon with pen</strong> button next to the student's
           record. Modify the necessary information in the form and save the
           changes.
         </p>
 
         <p>
-          <strong>Delete Functionality:</strong> If a record is no longer
+          <strong>Delete Student:</strong> If a record is no longer
           needed, click the <strong>trash icon</strong> button to remove it from
           the list permanently.
         </p>
@@ -64,14 +65,14 @@
               type="text"
               id="name"
               required
-              placeholder="Enter name" maxlength="25"/>
+              placeholder="Enter name"/>
 
             <label for="student-id">Student ID:</label>
             <input
               type="number"
               id="student-id"
               required
-              placeholder="123" maxlength="10" pattern="\d{10}"/>
+              placeholder="123"/>
 
             <label for="email">Email ID:</label>
             <input
@@ -96,8 +97,10 @@
         <!-- Student Records Section -->
         <section class="student-list-container">
           
+          
           <h2 class="student-list-heading">Student Records</h2>
           <div class="student-list">
+
 
             <table>
               <thead>
