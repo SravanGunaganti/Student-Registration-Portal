@@ -9,22 +9,14 @@ document.addEventListener("DOMContentLoaded", () => {
   const submitBtn = document.querySelector(".submit-btn");
   const cancelBtn = document.querySelector(".cancel");
   const emptyView = document.querySelector(".empty-view");
-  const studentListContainer = document.querySelector(".student-list-container")
-  const studentListHeading = document.querySelector(".student-list-heading")
-  // studentListContainer.classList.add(".hide-element");
-
+  const studentListHeading = document.querySelector(".student-list-heading");
 
   studentList.style.overflowY = "auto";
-
-  // Getting stored student data from localStorage or initialize an empty array
   let students = JSON.parse(localStorage.getItem("students")) || [];
-  // students.push(students[0]);
-  // saveToLocalStorage();
   let editIndex = null;
-  // console.log(0 === null);
-  function renderStart(index=null) {
-    editIndex=index;
-    if (index!==null) {
+  function renderStart(index = null) {
+    editIndex = index;
+    if (index !== null) {
       cancelBtn.style.display = "block";
       submitBtn.textContent = "Save Changes";
     } else {
@@ -40,24 +32,23 @@ document.addEventListener("DOMContentLoaded", () => {
     e.preventDefault();
     editIndex = null;
     studentForm.reset();
-    renderStart()
+    renderStart();
     renderTable();
   }
 
   cancelBtn.addEventListener("click", handleCancelChanges);
 
   // Function to render the student data in the table
-  function renderTable(scroll=false) { 
-    console.log(students,students.length);
-    if(students.length>0){
-      
+  function renderTable(scroll = false) {
+    console.log(students, students.length);
+    if (students.length > 0) {
       emptyView.style.display = "none";
       studentList.style.display = "block";
-      studentListHeading.style.display = "block";  
-    }else{
+      studentListHeading.style.display = "block";
+    } else {
       emptyView.style.display = "flex";
       studentList.style.display = "none";
-      studentListHeading.style.display = "none";  
+      studentListHeading.style.display = "none";
       return;
     }
     studentTableBody.innerHTML = "";
@@ -79,11 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const deleteBtn = document.createElement("button");
       deleteBtn.classList.add("delete", "hover-delete");
       deleteBtn.innerHTML = `<i class="delete fa-solid fa-trash-can"></i>`;
-
-      actionContainer.style.display = "flex";
-      actionContainer.style.gap = "16px";
-      actionContainer.style.justifyContent = "space-between";
-      actionContainer.style.alignItems="center"
+      actionContainer.classList.add("action-container");
 
       if (editIndex === index) {
         editBtn.disabled = true;
@@ -106,9 +93,9 @@ document.addEventListener("DOMContentLoaded", () => {
       row.appendChild(actionContainer);
 
       studentTableBody.appendChild(row);
-      if(editIndex===index){
-          row.scrollIntoView();
-      }else if(scroll && index===students.length-1){
+      if (editIndex === index) {
+        row.scrollIntoView();
+      } else if (scroll && index === students.length - 1) {
         row.scrollIntoView();
       }
     });
@@ -132,11 +119,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    if (!/^\d+$/.test(id) || id.length>10) {
+    if (!/^\d+$/.test(id) || id.length > 10) {
       alert("Student ID must be numbers and ≤ 10 digits");
       return;
     }
-    if (!/^\d+$/.test(contact) || contact.length!==10) {
+    if (!/^\d+$/.test(contact) || contact.length !== 10) {
       alert("Contact must be numbers and 10 digits.");
       return;
     }
@@ -145,14 +132,13 @@ document.addEventListener("DOMContentLoaded", () => {
       alert("Enter a valid email.");
       return;
     }
-    const isFound = students.find(student=> student.id===id);
+    const isFound = students.find((student) => student.id === id);
 
     if (isFound) {
-      if (editIndex===null) {
+      if (editIndex === null) {
         alert("Student Id already exists");
         return;
-    }
-
+      }
     }
 
     if (editIndex !== null) {
@@ -163,7 +149,12 @@ document.addEventListener("DOMContentLoaded", () => {
     saveToLocalStorage();
 
     studentForm.reset();
-    renderStart(null)
+    if (editIndex !== null) {
+      alert("Student Updated Succesfully");
+    } else {
+      alert("Student Added Sucessfully");
+    }
+    renderStart(null);
     renderTable(true);
   }
 
@@ -175,25 +166,23 @@ document.addEventListener("DOMContentLoaded", () => {
     idElement.value = student.id;
     emailElement.value = student.email;
     contactElement.value = student.contact;
-    // submitBtn.textContent = "Save Changes";
     renderStart(index);
     renderTable();
-    studentForm.scrollIntoView()
-    
+    studentForm.scrollIntoView();
   }
 
   // Function to delete a student record
   function deleteStudent(index) {
-      if (confirm("Are you sure want to delete this student?")) {
-        students.splice(index, 1);
-        saveToLocalStorage();
+    if (confirm("Are you sure want to delete this student?")) {
+      students.splice(index, 1);
+      saveToLocalStorage();
 
-        studentForm.reset();
-        renderStart()
-        renderTable();
-      } else {
-        console.log("Cancelled!");
-      }
+      studentForm.reset();
+      renderStart();
+      renderTable();
+    } else {
+      console.log("Cancelled!");
+    }
   }
 
   // Handle form submission with event listener
